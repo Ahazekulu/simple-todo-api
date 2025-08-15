@@ -1,5 +1,18 @@
 const express = require('express');
 const mysql = require('mysql2');
+const cors = require('cors');  <-- Add this line
+const app = express();
+app.use(express.json());
+app.use(cors());  <-- Add this line
+
+// Create a database connection using environment variables (for security)
+const db = mysql.createConnection({
+    // ...
+});
+
+// ... (rest of your code)
+const express = require('express');
+const mysql = require('mysql2');
 const app = express();
 app.use(express.json());
 
