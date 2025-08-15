@@ -5,18 +5,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Create a database connection using environment variables (for security)
-const db = mysql.createConnection({
-    // ...
-});
-
-// ... (rest of your code)
-const express = require('express');
-const mysql = require('mysql2');
-const app = express();
-app.use(express.json());
-
-// Create a database connection using environment variables (for security)
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -32,7 +20,6 @@ db.connect(err => {
     console.log('Connected to database.');
 });
 
-// GET endpoint to retrieve all to-do items
 app.get('/todos', (req, res) => {
     const sql = 'SELECT * FROM todos';
     db.query(sql, (err, results) => {
@@ -45,7 +32,6 @@ app.get('/todos', (req, res) => {
     });
 });
 
-// POST endpoint to add a new to-do item
 app.post('/todos', (req, res) => {
     const newTodo = req.body.task;
     const sql = 'INSERT INTO todos (task) VALUES (?)';
@@ -59,7 +45,6 @@ app.post('/todos', (req, res) => {
     });
 });
 
-// Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
